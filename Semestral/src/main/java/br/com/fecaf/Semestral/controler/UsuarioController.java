@@ -1,20 +1,23 @@
 package br.com.fecaf.Semestral.controler;
 
+import br.com.fecaf.Semestral.model.Usuario;
+import br.com.fecaf.Semestral.repository.UsuarioRepository;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioController {
-//    @GetMapping
-//    public String usuario(){
-//        return "Aqui vao ficar os usuarios cadastrados";
-//    }
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
-    @GetMapping
-    public ResponseEntity<String> teste(){
-        return ResponseEntity.ok("Testanto");
+    @PostMapping
+    public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuario) {
+        // Se os campos não estiverem preenchidos, o Spring retorna erro 400 automaticamente
+        return ResponseEntity.ok(usuarioRepository.save(usuario));
     }
+
 }
