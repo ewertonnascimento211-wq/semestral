@@ -1,6 +1,10 @@
 package br.com.fecaf.Semestral.model;
 
+import jakarta.persistence.Entity;
+import lombok.*;
 
+@Entity
+@Data
 public class Usuario {
 
     private Long id;
