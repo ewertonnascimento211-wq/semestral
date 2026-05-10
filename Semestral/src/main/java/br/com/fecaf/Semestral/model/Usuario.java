@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -27,5 +30,11 @@ public class Usuario {
 
     @NotNull(message = "Senha obrigatoria!")
     private String senha;
+
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Evento> eventos = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)@JoinColumn(name = "endereco_id",referencedColumnName = "id")
+    private Endereco endereco;
 }
 

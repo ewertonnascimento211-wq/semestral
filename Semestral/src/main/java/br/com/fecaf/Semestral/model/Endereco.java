@@ -20,4 +20,7 @@ public class Endereco {
     private String cep;
     private int numero;
 
+    @OneToOne(mappedBy = "endereco")
+    private Usuario usuario;
+
 }
