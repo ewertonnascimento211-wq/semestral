@@ -22,7 +22,7 @@ public class Usuario {
     @Column(nullable = false)
     private Integer idade;
 
-    @NotBlank
+    @Column(nullable = false , unique = true)
     private String email;
 
     @NotNull(message = "Senha obrigatoria!")
