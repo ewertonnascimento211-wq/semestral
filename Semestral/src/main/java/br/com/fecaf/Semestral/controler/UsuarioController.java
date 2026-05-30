@@ -35,9 +35,25 @@ public class UsuarioController {
                 .map(usuario -> ResponseEntity.ok(usuario))
                 .orElse(ResponseEntity.notFound().build());
     }
+    @PostMapping("/{id}")
+    public ResponseEntity<Usuario> atualizar(@PathVariable Long id , @Valid @RequestBody Usuario usuarioAtualizado){
+        return usuarioRepository.findById(id)
+                .map(usuario -> {
+                    //atualize os campos do usuario existente com os novos campos
+                    usuario.setNome(usuarioAtualizado.getNome());
+                    usuario.setEmail(usuarioAtualizado.getEmail());
+                    usuario.setIdade(usuarioAtualizado.getIdade());
+                    usuario.setSenha(usuarioAtualizado.getSenha());
+                    usuario.setEndereco(usuarioAtualizado.getEndereco());
+
+                    Usuario usuarioSalvo = usuarioRepository.save(usuario);
+                    return ResponseEntity.ok(usuarioSalvo);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id){
         return usuarioRepository.findById(id)
                 .map(usuario -> {
