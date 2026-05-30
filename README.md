@@ -93,4 +93,4 @@ A API estará disponível em `http://localhost:8080`.
 
 ## 👤 Autor
 
-Desenvolvido por **Seu Nome**.
+Desenvolvido por Ewerton Rodrigues.
