@@ -23,4 +23,6 @@ public class EnderecoController {
         //Se os campos nao estiverem prenchidos o spring retorna ero 400
         return ResponseEntity.ok(enderecoRepository.save(endereco));
     }
+
+
 }
