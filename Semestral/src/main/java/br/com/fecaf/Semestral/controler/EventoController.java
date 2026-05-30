@@ -1,6 +1,7 @@
 package br.com.fecaf.Semestral.controler;
 
 import br.com.fecaf.Semestral.model.Evento;
+import br.com.fecaf.Semestral.model.Usuario;
 import br.com.fecaf.Semestral.repository.EventoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,13 @@ public class EventoController {
     public List<Evento> findAll(){
         System.out.println(eventoRepository.findAll().size());
         return eventoRepository.findAll();
+    }
+    @GetMapping("/{id}")
+
+    public ResponseEntity<Evento> buscarPorID(@PathVariable Long id){
+        return eventoRepository.findById(id)
+                .map(evento -> ResponseEntity.ok(evento))
+                .orElse(ResponseEntity.notFound().build());
     }
 
 
